@@ -1,0 +1,90 @@
+---
+---
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == "production" -%}
+  .bundle
+{%- endif -%}
+';
+
+/* ===== LXGW WenKai (霞鹜文楷) ===== */
+@font-face {
+  font-family: 'LXGW WenKai';
+  src: url('/assets/fonts/LXGWWenKai-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai';
+  src: url('/assets/fonts/LXGWWenKai-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai';
+  src: url('/assets/fonts/LXGWWenKai-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== UbuntuSansMono Nerd Font Mono ===== */
+@font-face {
+  font-family: 'UbuntuSansMono Nerd Font Mono';
+  src: url('/assets/fonts/UbuntuSansMonoNFM-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'UbuntuSansMono Nerd Font Mono';
+  src: url('/assets/fonts/UbuntuSansMonoNFM-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'UbuntuSansMono Nerd Font Mono';
+  src: url('/assets/fonts/UbuntuSansMonoNFM-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'UbuntuSansMono Nerd Font Mono';
+  src: url('/assets/fonts/UbuntuSansMonoNFM-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ===== Font overrides — global ===== */
+*,
+*::before,
+*::after {
+  font-family:
+    'UbuntuSansMono Nerd Font Mono', 'LXGW WenKai', 'Noto Sans SC', 'Noto Sans',
+    sans-serif !important;
+}
+
+/* Code / monospace blocks keep monospace fallback */
+code,
+.highlight pre,
+.highlighter-rouge,
+td.rouge-code,
+kbd,
+pre,
+samp,
+tt,
+.mono {
+  font-family:
+    'UbuntuSansMono Nerd Font Mono', 'LXGW WenKai', monospace !important;
+}
