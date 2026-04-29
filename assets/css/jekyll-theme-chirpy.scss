@@ -66,6 +66,17 @@
   font-display: swap;
 }
 
+/* ===== Hide navigation icons ===== */
+nav .nav-link i,
+#sidebar .nav-link i,
+.nav-tabs .nav-link i,
+#main-wrapper .nav-link i.fa,
+#main-wrapper .nav-link i.fas,
+#main-wrapper .nav-link i.far,
+#main-wrapper .nav-link i.fab {
+  display: none !important;
+}
+
 /* ===== Font overrides — global ===== */
 *,
 *::before,
