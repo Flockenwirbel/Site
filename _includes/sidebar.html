@@ -20,12 +20,14 @@
     <ul class="nav">
       <!-- the tabs (including home) -->
       {% for tab in site.tabs %}
+        {% if tab.hidden != true %}
         <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
           <a href="{{ tab.url | relative_url }}" class="nav-link">
             <span>{{ site.data.locales[include.lang].tabs.[tab_name] | default: tab.title | upcase }}</span>
           </a>
         </li>
         <!-- .nav-item -->
+        {% endif %}
       {% endfor %}
     </ul>
   </nav>

@@ -11,7 +11,7 @@ order: 2
     <p>The queen of sciences</p>
   </a>
 
-  <a href="{{ '/categories/physics/' | relative_url }}" class="category-card">
+  <a href="{{ '/physics/' | relative_url }}" class="category-card">
     <span class="category-icon">⚛</span>
     <h3>Physics</h3>
     <p>The universe in equations</p>
@@ -23,7 +23,7 @@ order: 2
     <p>Talk is cheap, show me the code</p>
   </a>
 
-  <a href="{{ '/categories/language/' | relative_url }}" class="category-card">
+  <a href="{{ '/language/' | relative_url }}" class="category-card">
     <span class="category-icon">🌍</span>
     <h3>Language Learning</h3>
     <p>One language sets you in a corridor for life</p>

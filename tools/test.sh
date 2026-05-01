@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
-# Build the site content
+# Build and test the site content
 #
-# Requirement: jekyll
+# Requirement: html-proofer, jekyll
 #
 # Usage: See help information
 
@@ -15,7 +15,7 @@ _config="_config.yml"
 _baseurl=""
 
 help() {
-  echo "Build the site content"
+  echo "Build and test the site content"
   echo
   echo "Usage:"
   echo
@@ -59,6 +59,11 @@ main() {
   # build
   JEKYLL_ENV=production bundle exec jekyll b \
     -d "$SITE_DIR$_baseurl" -c "$_config"
+
+  # test
+  bundle exec htmlproofer "$SITE_DIR" \
+    --disable-external \
+    --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/,/^\/$/"
 }
 
 while (($#)); do

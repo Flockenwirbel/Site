@@ -67,14 +67,18 @@
 }
 
 /* ===== Font overrides — global ===== */
-*,
-*::before,
-*::after {
+html, body,
+h1, h2, h3, h4, h5, h6, p, span, a, div,
+li, ul, ol, dl,
+td, th, table, tr, thead, tbody, tfoot,
+label, blockquote, figcaption, strong, em, b, i, u, small, sub, sup,
+button, summary, details, dd, dt,
+header, footer, nav, main, article, section, aside, figure, address, time,
+input, textarea, select, fieldset, legend {
   font-family:
     'UbuntuSansMono Nerd Font Mono', 'LXGW WenKai', 'Noto Sans SC', 'Noto Sans',
     sans-serif !important;
 }
-
 /* Code / monospace blocks keep monospace fallback */
 code,
 .highlight pre,
@@ -89,12 +93,12 @@ tt,
     'UbuntuSansMono Nerd Font Mono', 'LXGW WenKai', monospace !important;
 }
 
-/* ===== Category Cards ===== */
+/* ===== Category cards ===== */
 .category-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin: 1.5rem 0;
 }
 
 .category-card {
@@ -102,153 +106,33 @@ tt,
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
+  border: 1px solid var(--card-border-color, #e0e0e0);
   border-radius: 0.75rem;
-  border: 1px solid var(--card-border, rgba(128, 128, 128, 0.2));
-  background: var(--card-bg, rgba(128, 128, 128, 0.05));
+  background: var(--card-bg, #fff);
+  text-align: center;
   text-decoration: none;
   color: inherit;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  border-color: var(--card-hover-border, rgba(128, 128, 128, 0.4));
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.category-icon {
+.category-card .category-icon {
   font-size: 2.5rem;
-  margin-bottom: 0.75rem;
-  line-height: 1;
+  margin-bottom: 0.5rem;
 }
 
 .category-card h3 {
+  margin: 0.3rem 0;
   font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.35rem;
-  letter-spacing: 0.02em;
 }
 
 .category-card p {
-  font-size: 0.8rem;
-  opacity: 0.6;
-  margin-bottom: 0;
-  font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .category-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .category-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* ===== Language Series Floating Nav ===== */
-
-/* Floating Action Button */
-.series-fab {
-  position: fixed;
-  right: 1.5rem;
-  bottom: 1.5rem;
-  z-index: 1000;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--card-bg, rgba(128, 128, 128, 0.1));
-  border: 1px solid var(--card-border, rgba(128, 128, 128, 0.25));
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  color: inherit;
-  font-size: 1rem;
-}
-
-.series-fab:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-}
-
-/* Overlay */
-.series-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 998;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-/* Slide-in Panel */
-.series-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 999;
-  width: 260px;
-  height: 100%;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-  background: var(--sidebar-bg, #fff);
-  border-left: 1px solid var(--card-border, rgba(128, 128, 128, 0.2));
-  padding: 2rem 1.25rem;
-  overflow-y: auto;
-}
-
-.series-panel-header {
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding-bottom: 0.75rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid var(--card-border, rgba(128, 128, 128, 0.2));
-}
-
-.series-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.series-link {
-  display: block;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.35rem;
-  text-decoration: none;
-  color: inherit;
-  font-size: 0.9rem;
-  transition: background 0.15s ease;
-}
-
-.series-link:hover {
-  background: var(--card-bg, rgba(128, 128, 128, 0.08));
-}
-
-.series-link.active {
-  font-weight: 600;
-  background: var(--card-bg, rgba(128, 128, 128, 0.12));
-}
-
-/* Toggle open state */
-#series-toggle:checked ~ .series-fab {
-  right: calc(260px + 1.5rem);
-}
-
-#series-toggle:checked ~ .series-overlay {
-  display: block;
-}
-
-#series-toggle:checked ~ .series-panel {
-  transform: translateX(0);
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
 }
