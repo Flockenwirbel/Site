@@ -13,12 +13,10 @@ hidden: true
   <p>Mathematical Methods for Physics</p>
 </a>
 
-<!-- Future sub-topics:
-<a class="category-card" href="{{ '/tags/analytical-mechanics/' | relative_url }}">
+<a class="category-card" href="{{ '/tags/分析力学/' | relative_url }}">
   <span class="category-icon">⚙️</span>
   <h3>分析力学</h3>
   <p>Analytical Mechanics</p>
 </a>
--->
 
 </div>
