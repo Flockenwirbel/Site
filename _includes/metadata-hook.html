@@ -1,0 +1,75 @@
+<!-- Page transitions: smooth cross-page navigation -->
+<meta name="view-transition" content="same-origin" />
+
+<style>
+  /* Fallback: fade-in on page load for browsers without View Transitions API */
+  @supports not (view-transition-name: none) {
+    @keyframes page-fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    #main-wrapper {
+      animation: page-fade-in 0.2s ease-out;
+    }
+  }
+
+  /* View Transitions API cross-page transitions */
+  ::view-transition-old(root) {
+    animation: 0.2s ease-out both vt-fade-out;
+  }
+  ::view-transition-new(root) {
+    animation: 0.2s ease-in both vt-fade-in;
+  }
+  @keyframes vt-fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes vt-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  // Prefetch internal pages on link hover for faster navigation
+  (() => {
+    const prefetched = new Set();
+    let timer;
+
+    const prefetch = (url) => {
+      if (prefetched.has(url)) return;
+      prefetched.add(url);
+      const link = document.createElement("link");
+      link.rel = "prefetch";
+      link.href = url;
+      document.head.appendChild(link);
+    };
+
+    document.addEventListener("mouseover", (e) => {
+      const a = e.target.closest("a");
+      if (!a) return;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (
+          a.origin === location.origin &&
+          a.href !== location.href &&
+          !a.hasAttribute("target")
+        ) {
+          prefetch(a.href);
+        }
+      }, 60);
+    });
+  })();
+</script>
