@@ -19,16 +19,16 @@
       </span>
       {% elsif forloop.last %} {% if page.collection == 'tabs' %}
       <span
-        >{{ site.data.locales[include.lang].tabs[item] | default: item |
+        >{{ site.data.locales[include.lang].tabs[item] | default: item | url_decode |
         capitalize }}</span
       >
       {% else %}
-      <span>{{ item | capitalize }}</span>
+      <span>{{ item | url_decode | capitalize }}</span>
       {% endif %} {% elsif item != '' %} {% assign _url_so_far = _url_so_far |
       append: '/' | append: item %}
       <span>
         <a href="{{ _url_so_far | append: '/' | relative_url }}">
-          {{- item | capitalize -}}
+          {{- item | url_decode | capitalize -}}
         </a>
       </span>
       {% endif %} {% endfor %} {% endif %}
