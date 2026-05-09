@@ -33,7 +33,7 @@ social:
 theme_mode:
 
 # Avatar on sidebar
-avatar: /assets/img/avatar.png
+avatar: /assets/img/favicons/Katze.svg
 
 # TOC in posts
 toc: true
