@@ -1,0 +1,627 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+.nav-bar{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:16px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.nav-btn{padding:5px 14px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);border-radius:var(--border-radius-md);cursor:pointer;font-size:12px;transition:all .15s}
+.nav-btn:hover{filter:brightness(.93);color:var(--color-text-primary)}
+.nav-btn.active{background:var(--color-background-info);color:var(--color-text-info);border-color:var(--color-border-info)}
+
+.chapter{display:none}
+.chapter.active{display:block}
+
+.section-title{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px}
+.section-sub{font-size:13px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:16px}
+
+.sim-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px;margin-bottom:14px}
+
+.input-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.inp-label{font-size:13px;color:var(--color-text-secondary);min-width:28px}
+.bit-btn{width:44px;height:36px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);font-size:15px;font-weight:500;cursor:pointer;transition:all .15s;background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.bit-btn.on{background:#EAF3DE;color:#27500A;border-color:#3B6D11}
+.bit-btn.on:hover{background:#C0DD97}
+.bit-btn.off{background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.bit-btn:hover{background:var(--color-background-secondary)}
+.bit-btn.forbidden{background:#FCEBEB;color:#791F1F;border-color:#A32D2D}
+
+.output-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.out-box{text-align:center}
+.out-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:3px}
+.out-val{font-size:28px;font-weight:500;width:50px;height:50px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;border:0.5px solid var(--color-border-tertiary);transition:all .2s}
+.out-val.v1{background:#EAF3DE;color:#27500A;border-color:#3B6D11}
+.out-val.v0{background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.out-val.vx{background:#FAECE7;color:#993C1D;border-color:#D85A30}
+
+.func-badge{padding:4px 12px;border-radius:var(--border-radius-md);font-size:12px;font-weight:500;margin-left:8px}
+.func-hold{background:#F1EFE8;color:#444441}
+.func-set{background:#EAF3DE;color:#27500A}
+.func-reset{background:#FAECE7;color:#993C1D}
+.func-toggle{background:#E6F1FB;color:#185FA5}
+.func-forbid{background:#FCEBEB;color:#791F1F}
+.func-undef{background:#FAEEDA;color:#633806}
+
+.truth-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+.truth-table th{padding:6px 10px;text-align:center;font-weight:500;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px}
+.truth-table td{padding:5px 10px;text-align:center;color:var(--color-text-primary);border-bottom:0.5px solid var(--color-border-tertiary)}
+.truth-table tr.highlighted td{background:var(--color-background-info);color:var(--color-text-info)}
+.truth-table tr.forbidden-row td{background:#FCEBEB;color:#791F1F}
+
+.clk-btn{padding:8px 20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-primary);border-radius:var(--border-radius-md);cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;margin-right:8px}
+.clk-btn:hover{filter:brightness(.93)}
+.clk-btn:active{transform:scale(0.97)}
+.clk-btn.fire{background:var(--color-background-info);color:var(--color-text-info);border-color:var(--color-border-info)}
+
+.explain-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px;font-size:13px;color:var(--color-text-secondary);line-height:1.6;margin-top:10px}
+.explain-box b{color:var(--color-text-primary);font-weight:500}
+
+.wave-svg{display:block;width:100%;margin-top:8px}
+
+.evo-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:12px 0}
+.evo-node{padding:5px 12px;border-radius:var(--border-radius-md);font-size:12px;font-weight:500;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.evo-node.current{background:#E6F1FB;color:#185FA5;border-color:#185FA5}
+.evo-arrow{color:var(--color-text-tertiary);font-size:14px}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.two-col{grid-template-columns:1fr}}
+
+.chip-diagram{margin:12px 0}
+</style>
+
+<h2 class="sr-only">触发器完整复习手册：从SR锁存器到负边沿JK触发器，包含交互仿真电路</h2>
+
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="goto(0)">① SR 锁存器</button>
+  <button class="nav-btn" onclick="goto(1)">② 钟控 SR</button>
+  <button class="nav-btn" onclick="goto(2)">③ D 触发器</button>
+  <button class="nav-btn" onclick="goto(3)">④ JK 触发器</button>
+  <button class="nav-btn" onclick="goto(4)">⑤ 主从 JK</button>
+  <button class="nav-btn" onclick="goto(5)">⑥ 负边沿 JK</button>
+  <button class="nav-btn" onclick="goto(6)">⑦ 演化总结</button>
+</div>
+
+<div id="ch0" class="chapter active">
+  <p class="section-title">SR 锁存器（基本 RS 触发器）</p>
+  <p class="section-sub">最基础的存储单元，由两个交叉耦合的与非门（或或非门）构成，无时钟控制，输入直接影响输出。</p>
+
+  <div class="sim-card">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">与非门构成（低电平有效）：S̄=0 置位，R̄=0 复位</div>
+    <div class="input-row">
+      <span class="inp-label">S̄</span>
+      <button class="bit-btn on" id="sr-s" onclick="srToggle('s')">0</button>
+      <span class="inp-label">R̄</span>
+      <button class="bit-btn off" id="sr-r" onclick="srToggle('r')">1</button>
+    </div>
+    <div class="output-row">
+      <div class="out-box">
+        <div class="out-label">Q</div>
+        <div class="out-val v1" id="sr-q">1</div>
+      </div>
+      <div class="out-box">
+        <div class="out-label">Q̄</div>
+        <div class="out-val v0" id="sr-qb">0</div>
+      </div>
+      <span class="func-badge func-set" id="sr-func">置位 Set</span>
+    </div>
+    <div class="explain-box" id="sr-explain">
+      <b>S̄=0, R̄=1：</b>置位状态，Q 被强制为 1，Q̄ 为 0。
+    </div>
+  </div>
+
+  <table class="truth-table" id="sr-table">
+    <thead><tr><th>S̄</th><th>R̄</th><th>Q</th><th>Q̄</th><th>功能</th></tr></thead>
+    <tbody>
+      <tr id="sr-r00"><td>0</td><td>0</td><td>×</td><td>×</td><td style="color:#A32D2D">禁止（不定）</td></tr>
+      <tr id="sr-r01" class="highlighted"><td>0</td><td>1</td><td>1</td><td>0</td><td>置位 Set</td></tr>
+      <tr id="sr-r10"><td>1</td><td>0</td><td>0</td><td>1</td><td>复位 Reset</td></tr>
+      <tr id="sr-r11"><td>1</td><td>1</td><td>Q</td><td>Q̄</td><td>保持 Hold</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="ch1" class="chapter">
+  <p class="section-title">钟控 SR 触发器（同步 SR）</p>
+  <p class="section-sub">在 SR 锁存器前加入时钟门控，只有 CLK=1 时输入才有效；CLK=0 时输出保持不变。仍存在 S=R=1 的禁止态。</p>
+
+  <div class="sim-card">
+    <div class="input-row">
+      <span class="inp-label">CLK</span>
+      <button class="bit-btn off" id="csr-clk" onclick="csrToggle('clk')">0</button>
+      <span class="inp-label" style="margin-left:8px">S</span>
+      <button class="bit-btn off" id="csr-s" onclick="csrToggle('s')">0</button>
+      <span class="inp-label">R</span>
+      <button class="bit-btn off" id="csr-r" onclick="csrToggle('r')">0</button>
+    </div>
+    <div class="output-row">
+      <div class="out-box"><div class="out-label">Q</div><div class="out-val v0" id="csr-q">0</div></div>
+      <div class="out-box"><div class="out-label">Q̄</div><div class="out-val v1" id="csr-qb">1</div></div>
+      <span class="func-badge func-hold" id="csr-func">CLK=0，锁定</span>
+    </div>
+    <div class="explain-box" id="csr-explain"><b>CLK=0：</b>时钟门关闭，无论 S、R 如何变化，输出 Q 保持不变。</div>
+  </div>
+
+  <table class="truth-table">
+    <thead><tr><th>CLK</th><th>S</th><th>R</th><th>Q⁺</th><th>功能</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>×</td><td>×</td><td>Q</td><td>保持</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td><td>Q</td><td>保持</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>复位</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>置位</td></tr>
+      <tr class="forbidden-row"><td>1</td><td>1</td><td>1</td><td>×</td><td>禁止！</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="ch2" class="chapter">
+  <p class="section-title">D 触发器（数据触发器）</p>
+  <p class="section-sub">将 S 和 R 合并为一路输入 D，并强制 R = D̄，彻底消除禁止态。在时钟有效沿到来时，Q 直接跟随 D。</p>
+
+  <div class="sim-card">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">正边沿触发 D 触发器，点击"上升沿"模拟时钟触发</div>
+    <div class="input-row">
+      <span class="inp-label">D</span>
+      <button class="bit-btn off" id="d-d" onclick="dToggle()">0</button>
+      <button class="clk-btn" id="d-clk-btn" onclick="dClock()">↑ 上升沿</button>
+    </div>
+    <div class="output-row">
+      <div class="out-box"><div class="out-label">Q</div><div class="out-val v0" id="d-q">0</div></div>
+      <div class="out-box"><div class="out-label">Q̄</div><div class="out-val v1" id="d-qb">1</div></div>
+      <span class="func-badge func-hold" id="d-func">等待上升沿</span>
+    </div>
+    <div class="explain-box" id="d-explain"><b>当前 D=0：</b>修改 D 的值，然后点击"↑ 上升沿"观察 Q 的变化。</div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <table class="truth-table">
+        <thead><tr><th>CLK 边沿</th><th>D</th><th>Q⁺</th><th>功能</th></tr></thead>
+        <tbody>
+          <tr><td>↑</td><td>0</td><td>0</td><td>清零</td></tr>
+          <tr><td>↑</td><td>1</td><td>1</td><td>置 1</td></tr>
+          <tr><td>非上升沿</td><td>×</td><td>Q</td><td>保持</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="explain-box" style="margin-top:0">
+      <b>特征方程：</b><br>Q⁺ = D<br><br>
+      <b>优点：</b>无禁止态，逻辑最简洁，广泛用于寄存器、移位寄存器。<br><br>
+      <b>缺点：</b>只能透传数据，不能直接实现翻转功能。
+    </div>
+  </div>
+</div>
+
+<div id="ch3" class="chapter">
+  <p class="section-title">JK 触发器（电平/脉冲触发）</p>
+  <p class="section-sub">将 J 连接到 SR 的 S 端、K 连接到 R 端，并将 J=K=1 的禁止态改为"翻转"功能，是功能最完整的触发器。</p>
+
+  <div class="sim-card">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">脉冲触发型 JK — CLK 高电平期间采样，下降沿更新（主从结构）</div>
+    <div class="input-row">
+      <span class="inp-label">J</span>
+      <button class="bit-btn off" id="jk-j" onclick="jkToggle('j')">0</button>
+      <span class="inp-label">K</span>
+      <button class="bit-btn off" id="jk-k" onclick="jkToggle('k')">0</button>
+      <button class="clk-btn" id="jk-clk-btn" onclick="jkClock()">脉冲</button>
+    </div>
+    <div class="output-row">
+      <div class="out-box"><div class="out-label">Q</div><div class="out-val v0" id="jk-q">0</div></div>
+      <div class="out-box"><div class="out-label">Q̄</div><div class="out-val v1" id="jk-qb">1</div></div>
+      <span class="func-badge func-hold" id="jk-func">保持 Hold</span>
+    </div>
+    <div class="explain-box" id="jk-explain"><b>J=0, K=0：</b>保持状态，时钟到来后 Q 不变。</div>
+  </div>
+
+  <table class="truth-table" id="jk-table">
+    <thead><tr><th>J</th><th>K</th><th>Q⁺</th><th>功能</th></tr></thead>
+    <tbody>
+      <tr id="jk-r00" class="highlighted"><td>0</td><td>0</td><td>Q</td><td>保持</td></tr>
+      <tr id="jk-r01"><td>0</td><td>1</td><td>0</td><td>复位 Reset</td></tr>
+      <tr id="jk-r10"><td>1</td><td>0</td><td>1</td><td>置位 Set</td></tr>
+      <tr id="jk-r11"><td>1</td><td>1</td><td>Q̄</td><td>翻转 Toggle</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="ch4" class="chapter">
+  <p class="section-title">主从 JK 触发器（Master-Slave）</p>
+  <p class="section-sub">在 JK 触发器内部采用<b>主从两级结构</b>，彻底解决脉冲触发 JK 的"一次变化"（空翻）问题。CLK=1 时主锁存器采样，CLK↓ 时从锁存器输出，确保每个时钟周期只翻转一次。</p>
+
+  <div class="sim-card">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">主从结构 — 设置 J、K 后点击"CLK 脉冲"观察两级传递</div>
+    <div class="input-row">
+      <span class="inp-label">J</span>
+      <button class="bit-btn off" id="ms-j" onclick="msToggle('j')">0</button>
+      <span class="inp-label">K</span>
+      <button class="bit-btn off" id="ms-k" onclick="msToggle('k')">0</button>
+      <button class="clk-btn" id="ms-clk-btn" onclick="msClock()">CLK 脉冲</button>
+    </div>
+    <div class="output-row">
+      <div class="out-box"><div class="out-label">Qm (主)</div><div class="out-val v0" id="ms-qm">0</div></div>
+      <div class="out-box"><div class="out-label">Q (从/输出)</div><div class="out-val v0" id="ms-q">0</div></div>
+      <div class="out-box"><div class="out-label">Q̄</div><div class="out-val v1" id="ms-qb">1</div></div>
+      <span class="func-badge func-hold" id="ms-func">保持 Hold</span>
+    </div>
+    <div class="explain-box" id="ms-explain">
+      <b>CLK=1 阶段：</b>主锁存器（Master）打开，采样 J,K 值 → Qm 更新。<b>CLK=0 阶段：</b>主锁存器锁定，从锁存器（Slave）将 Qm 传递到 Q。输出仅在下降沿改变。
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div style="font-size:12px;line-height:1.8;color:var(--color-text-secondary)">
+      <b style="color:var(--color-text-primary)">两级结构：</b><br>
+      <span style="background:#F1EFE8;padding:2px 8px;border-radius:4px;color:#444441">Master（主）</span> ← J, K, CLK<br>
+      <span style="margin-left:20px">↳ CLK=1：透明，采样 J,K</span><br>
+      <span style="margin-left:20px">↳ CLK=0：锁存，保持 Qm</span><br>
+      <span style="background:#E6F1FB;padding:2px 8px;border-radius:4px;color:#185FA5">Slave（从）</span> ← Qm, Qm̄, CLK̄<br>
+      <span style="margin-left:20px">↳ CLK=0：透明，跟随 Qm</span><br>
+      <span style="margin-left:20px">↳ CLK=1：锁存，输出不变</span><br>
+      <br><b style="color:var(--color-text-primary)">为什么解决空翻：</b>Master 在 CLK=1 期间只采样<b>一次</b>（第一个边沿锁定的值），即使 J,K 在 CLK=1 期间变化，Qm 也不变。Slave 在下降沿才将 Qm 传递到输出。
+    </div>
+    <div style="font-size:13px;line-height:1.8;color:var(--color-text-secondary)">
+      <b style="color:var(--color-text-primary)">时序逻辑：</b><br>
+      ① CLK↑：Master 透明，采样 J,K → Qm 可能变化<br>
+      ② CLK=1 期间：Master 锁存首次采样值，Qm 固定<br>
+      ③ CLK↓：Master 锁存 → Slave 透明，Qm → Q<br>
+      ④ CLK=0 期间：输出 Q 保持稳定<br><br>
+      <b style="color:#3B6D11">每次 CLK 脉冲仅产生一次有效输出变化。</b>
+    </div>
+  </div>
+
+  <table class="truth-table" style="margin-top:12px">
+    <thead><tr><th>CLK 阶段</th><th>Master</th><th>Slave</th><th>J</th><th>K</th><th>Q⁺</th><th>功能</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>锁存</td><td>锁存</td><td>0</td><td>0</td><td>Q</td><td>保持</td></tr>
+      <tr><td>—</td><td>锁存</td><td>锁存</td><td>0</td><td>1</td><td>0</td><td>复位</td></tr>
+      <tr><td>—</td><td>锁存</td><td>锁存</td><td>1</td><td>0</td><td>1</td><td>置位</td></tr>
+      <tr><td>—</td><td>锁存</td><td>锁存</td><td>1</td><td>1</td><td>Q̄</td><td>翻转</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="ch5" class="chapter">
+  <p class="section-title">负边沿 JK 触发器</p>
+  <p class="section-sub">在 JK 触发器基础上，改为在时钟<b style="color:var(--color-text-danger,#D85A30)">下降沿</b>（高→低）采样并更新输出。其他时刻输出完全锁定，抗干扰性更强。</p>
+
+  <div class="sim-card">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">设置 J、K 后点击"↓ 下降沿"触发</div>
+    <div class="input-row">
+      <span class="inp-label">J</span>
+      <button class="bit-btn on" id="njk-j" onclick="njkToggle('j')">1</button>
+      <span class="inp-label">K</span>
+      <button class="bit-btn off" id="njk-k" onclick="njkToggle('k')">0</button>
+      <button class="clk-btn" id="njk-clk-btn" onclick="njkClock()">↓ 下降沿</button>
+    </div>
+    <div class="output-row">
+      <div class="out-box"><div class="out-label">Q</div><div class="out-val v0" id="njk-q">0</div></div>
+      <div class="out-box"><div class="out-label">Q̄</div><div class="out-val v1" id="njk-qb">1</div></div>
+      <span class="func-badge func-set" id="njk-func">置位 Set</span>
+    </div>
+    <div class="explain-box" id="njk-explain"><b>J=1, K=0：</b>下降沿到来时执行置位，Q→1。</div>
+  </div>
+
+  <div style="margin-bottom:10px;font-size:13px;color:var(--color-text-secondary)">时序波形（最近 6 次下降沿）</div>
+  <div class="sim-card" style="padding:12px">
+    <svg id="njk-wave" class="wave-svg" viewBox="0 0 580 130" style="height:130px"></svg>
+  </div>
+
+  <div class="explain-box">
+    <b>特征方程：</b>Q⁺ = J·Q̄ + K̄·Q<br><br>
+    <b>负边沿 vs 正边沿：</b>逻辑功能相同，仅触发时刻不同。符号上，负边沿触发器的 CLK 输入端有一个小圆圈 ○ 表示反相。<br><br>
+    <b>J=K=1 时的分频应用：</b>每个下降沿 Q 翻转一次，输出频率 = 时钟频率 ÷ 2，可直接用作二分频器。
+  </div>
+</div>
+
+<div id="ch6" class="chapter">
+  <p class="section-title">触发器演化总结</p>
+  <p class="section-sub">每一步演化都在解决上一代的缺陷，逐步走向功能完整、时序可控。</p>
+
+  <div class="evo-chain">
+    <span class="evo-node">SR 锁存器</span>
+    <span class="evo-arrow">→</span>
+    <span class="evo-node">钟控 SR</span>
+    <span class="evo-arrow">→</span>
+    <span class="evo-node">D 触发器</span>
+    <span class="evo-arrow">→</span>
+    <span class="evo-node">JK（脉冲）</span>
+    <span class="evo-arrow">→</span>
+    <span class="evo-node">主从 JK</span>
+    <span class="evo-arrow">→</span>
+    <span class="evo-node current">负边沿 JK</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+    <div class="sim-card" style="padding:14px">
+      <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--color-text-primary)">SR 锁存器</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7">
+        无时钟 · 直接控制 · 存在 S=R=1 禁止态 · 输出随输入实时变化<br>
+        <span style="color:#A32D2D">缺陷：无时序控制，S=R=1 输出不确定</span>
+      </div>
+    </div>
+    <div class="sim-card" style="padding:14px">
+      <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--color-text-primary)">钟控 SR 触发器</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7">
+        CLK=1 时有效 · 同步控制 · 仍存在 S=R=1 禁止态<br>
+        <span style="color:#A32D2D">缺陷：高电平期间仍然透明（空翻问题），存在禁止态</span>
+      </div>
+    </div>
+    <div class="sim-card" style="padding:14px">
+      <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--color-text-primary)">D 触发器</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7">
+        单输入 · Q⁺=D · 无禁止态 · 边沿触发<br>
+        <span style="color:#3B6D11">解决了禁止态，逻辑简单</span> · <span style="color:#A32D2D">缺陷：无翻转功能，不能自循环</span>
+      </div>
+    </div>
+    <div class="sim-card" style="padding:14px">
+      <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--color-text-primary)">JK 触发器（脉冲/电平触发）</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7">
+        J=K=1 → 翻转 · 功能最全 · 存在"一次变化"问题<br>
+        <span style="color:#3B6D11">消除禁止态，增加翻转</span> · <span style="color:#A32D2D">缺陷：高电平期间多次翻转（空翻）</span>
+      </div>
+    </div>
+    <div class="sim-card" style="padding:14px">
+      <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--color-text-primary)">主从 JK 触发器（Master-Slave）</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7">
+        两级锁存 · Master 在 CLK=1 采样 · Slave 在 CLK↓ 输出 · 每周期仅一次变化<br>
+        <span style="color:#3B6D11">解决空翻：采样后立即锁定主锁存器</span> · <span style="color:#A32D2D">缺陷：CLK=1 期间 J,K 抖动会捕获错误值</span>
+      </div>
+    </div>
+    <div class="sim-card" style="padding:14px;border-color:var(--color-border-info)">
+      <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--color-text-info)">负边沿 JK 触发器 ← 终点</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7">
+        仅在时钟下降沿采样 · 全功能（保持/置位/复位/翻转） · 无禁止态 · 无空翻<br>
+        Q⁺ = J·Q̄ + K̄·Q · 可用作二分频器<br>
+        <span style="color:#3B6D11">解决了所有前代缺陷，是最完整的触发器形式</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px">
+    <table class="truth-table">
+      <thead>
+        <tr>
+          <th>触发器</th><th>时钟</th><th>输入</th><th>功能数</th><th>禁止态</th><th>空翻</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>SR 锁存器</td><td>无</td><td>S, R</td><td>3</td><td style="color:#A32D2D">有</td><td>—</td></tr>
+        <tr><td>钟控 SR</td><td>电平</td><td>S, R</td><td>3</td><td style="color:#A32D2D">有</td><td style="color:#A32D2D">有</td></tr>
+        <tr><td>D 触发器</td><td>边沿</td><td>D</td><td>2</td><td style="color:#3B6D11">无</td><td style="color:#3B6D11">无</td></tr>
+        <tr><td>JK（脉冲）</td><td>脉冲</td><td>J, K</td><td>4</td><td style="color:#3B6D11">无</td><td style="color:#A32D2D">有</td></tr>
+        <tr><td>主从 JK</td><td>脉冲(主从)</td><td>J, K</td><td>4</td><td style="color:#3B6D11">无</td><td style="color:#3B6D11">无</td></tr>
+        <tr style="background:var(--color-background-info)"><td style="color:var(--color-text-info);font-weight:500">负边沿 JK</td><td style="color:var(--color-text-info)">下降沿</td><td style="color:var(--color-text-info)">J, K</td><td style="color:var(--color-text-info)">4</td><td style="color:#3B6D11">无</td><td style="color:#3B6D11">无</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+var chapters = 7;
+function goto(i){
+  for(var j=0;j<chapters;j++){
+    document.getElementById('ch'+j).classList.toggle('active',j===i);
+    document.querySelectorAll('.nav-btn')[j].classList.toggle('active',j===i);
+  }
+}
+
+var srState={s:0,r:1,q:1};
+function srToggle(pin){
+  if(pin==='s') srState.s=1-srState.s;
+  else srState.r=1-srState.r;
+  srUpdate();
+}
+function srUpdate(){
+  var s=srState.s,r=srState.r;
+  var sb=document.getElementById('sr-s'),rb=document.getElementById('sr-r');
+  sb.textContent=s; rb.textContent=r;
+  sb.className='bit-btn '+(s===0?'on':'off');
+  rb.className='bit-btn '+(r===0?'on':'off');
+  var q,qb,func,exp,cls;
+  if(s===0&&r===0){q='×';qb='×';func='禁止态';cls='func-forbid';exp='<b>S̄=0, R̄=0：</b>两个输出同时被强制为 1（与非门），即 Q=Q̄=1，违反互补原则，称为禁止态。实际电路中应避免此输入组合。'}
+  else if(s===0&&r===1){srState.q=1;q=1;qb=0;func='置位 Set';cls='func-set';exp='<b>S̄=0, R̄=1：</b>置位状态，Q 被强制置为 1，Q̄=0。即使之后 S̄ 回到 1，状态也将保持。'}
+  else if(s===1&&r===0){srState.q=0;q=0;qb=1;func='复位 Reset';cls='func-reset';exp='<b>S̄=1, R̄=0：</b>复位状态，Q 被强制清为 0，Q̄=1。'}
+  else{q=srState.q;qb=1-srState.q;func='保持 Hold';cls='func-hold';exp='<b>S̄=1, R̄=1：</b>保持状态，与非门锁存上一次的输出，Q 不变。这是触发器存储信息的核心机制。'}
+  var qd=document.getElementById('sr-q'),qbd=document.getElementById('sr-qb');
+  qd.textContent=q; qbd.textContent=qb;
+  qd.className='out-val '+(q===1?'v1':q==='×'?'vx':'v0');
+  qbd.className='out-val '+(qb===0?'v0':qb==='×'?'vx':'v1');
+  document.getElementById('sr-func').textContent=func;
+  document.getElementById('sr-func').className='func-badge '+cls;
+  document.getElementById('sr-explain').innerHTML=exp;
+  var rows=['sr-r00','sr-r01','sr-r10','sr-r11'];
+  rows.forEach(function(id){document.getElementById(id).classList.remove('highlighted')});
+  var idx=(1-s)*2+(1-r);
+  if(idx>=0&&idx<4) document.getElementById(rows[idx]).classList.add('highlighted');
+}
+
+var csrState={clk:0,s:0,r:0,q:0};
+function csrToggle(pin){
+  csrState[pin]=1-csrState[pin];
+  csrUpdate();
+}
+function csrUpdate(){
+  var clk=csrState.clk,s=csrState.s,r=csrState.r,q=csrState.q;
+  ['clk','s','r'].forEach(function(p){
+    var b=document.getElementById('csr-'+p);
+    b.textContent=csrState[p];
+    b.className='bit-btn '+(csrState[p]?'on':'off');
+  });
+  var qn,func,cls,exp;
+  if(!clk){qn=q;func='CLK=0，锁定';cls='func-hold';exp='<b>CLK=0：</b>时钟门关闭，S、R 输入被屏蔽，输出 Q 完全保持不变。这是同步设计的关键——只有时钟允许时才更新状态。'}
+  else if(s===0&&r===0){qn=q;func='保持 Hold';cls='func-hold';exp='<b>CLK=1, S=0, R=0：</b>时钟开启但无有效输入，Q 保持原值不变。'}
+  else if(s===0&&r===1){qn=0;func='复位 Reset';cls='func-reset';exp='<b>CLK=1, S=0, R=1：</b>复位，Q→0。时钟门打开，R=1 有效，输出被清零。'}
+  else if(s===1&&r===0){qn=1;func='置位 Set';cls='func-set';exp='<b>CLK=1, S=1, R=0：</b>置位，Q→1。时钟门打开，S=1 有效，输出被置 1。'}
+  else{qn=q;func='禁止！S=R=1';cls='func-forbid';exp='<b>CLK=1, S=1, R=1：</b>禁止态！两路同时有效，输出不确定。这是钟控 SR 尚未解决的缺陷，需要电路设计者手动避免。'}
+  csrState.q=qn;
+  var qd=document.getElementById('csr-q'),qbd=document.getElementById('csr-qb');
+  qd.textContent=qn; qbd.textContent=1-qn;
+  qd.className='out-val '+(qn?'v1':'v0');
+  qbd.className='out-val '+(qn?'v0':'v1');
+  document.getElementById('csr-func').textContent=func;
+  document.getElementById('csr-func').className='func-badge '+cls;
+  document.getElementById('csr-explain').innerHTML=exp;
+}
+
+var dState={d:0,q:0};
+function dToggle(){
+  dState.d=1-dState.d;
+  var b=document.getElementById('d-d');
+  b.textContent=dState.d;
+  b.className='bit-btn '+(dState.d?'on':'off');
+  document.getElementById('d-explain').innerHTML='<b>当前 D='+dState.d+'：</b>点击"↑ 上升沿"将在时钟上升沿时令 Q=' +dState.d+'。';
+  document.getElementById('d-func').textContent='等待上升沿';
+  document.getElementById('d-func').className='func-badge func-hold';
+}
+function dClock(){
+  dState.q=dState.d;
+  var qd=document.getElementById('d-q'),qbd=document.getElementById('d-qb');
+  qd.textContent=dState.q; qbd.textContent=1-dState.q;
+  qd.className='out-val '+(dState.q?'v1':'v0');
+  qbd.className='out-val '+(dState.q?'v0':'v1');
+  var func=dState.q?'Q=1 已置位':'Q=0 已清零';
+  document.getElementById('d-func').textContent=func;
+  document.getElementById('d-func').className='func-badge '+(dState.q?'func-set':'func-reset');
+  document.getElementById('d-explain').innerHTML='<b>上升沿触发：</b>D='+dState.d+'，执行后 Q='+dState.q+'。下一次修改 D 后再触发上升沿，Q 才会改变。';
+  var btn=document.getElementById('d-clk-btn');
+  btn.classList.add('fire'); setTimeout(function(){btn.classList.remove('fire')},200);
+}
+
+var jkState={j:0,k:0,q:0};
+function jkToggle(pin){
+  jkState[pin]=1-jkState[pin];
+  var b=document.getElementById('jk-'+pin);
+  b.textContent=jkState[pin];
+  b.className='bit-btn '+(jkState[pin]?'on':'off');
+  var idx=jkState.j*2+jkState.k;
+  var rows=['jk-r00','jk-r01','jk-r10','jk-r11'];
+  rows.forEach(function(id){document.getElementById(id).classList.remove('highlighted')});
+  document.getElementById(rows[idx]).classList.add('highlighted');
+  var funcs=['保持','复位 Reset','置位 Set','翻转 Toggle'];
+  var clss=['func-hold','func-reset','func-set','func-toggle'];
+  document.getElementById('jk-func').textContent=funcs[idx];
+  document.getElementById('jk-func').className='func-badge '+clss[idx];
+}
+function jkClock(){
+  var j=jkState.j,k=jkState.k,q=jkState.q;
+  var qn,exp;
+  if(j===0&&k===0){qn=q;exp='<b>J=0, K=0：</b>保持，Q 不变，仍为 '+q+'。'}
+  else if(j===0&&k===1){qn=0;exp='<b>J=0, K=1：</b>复位，Q→0。'}
+  else if(j===1&&k===0){qn=1;exp='<b>J=1, K=0：</b>置位，Q→1。'}
+  else{qn=1-q;exp='<b>J=1, K=1：</b>翻转！Q 从 '+q+' 变为 '+(1-q)+'。这就是 JK 区别于 SR 的核心功能。'}
+  jkState.q=qn;
+  var qd=document.getElementById('jk-q'),qbd=document.getElementById('jk-qb');
+  qd.textContent=qn; qbd.textContent=1-qn;
+  qd.className='out-val '+(qn?'v1':'v0');
+  qbd.className='out-val '+(qn?'v0':'v1');
+  document.getElementById('jk-explain').innerHTML=exp;
+  var btn=document.getElementById('jk-clk-btn');
+  btn.classList.add('fire'); setTimeout(function(){btn.classList.remove('fire')},200);
+}
+
+var njkState={j:1,k:0,q:0,history:[]};
+function njkToggle(pin){
+  njkState[pin]=1-njkState[pin];
+  var b=document.getElementById('njk-'+pin);
+  b.textContent=njkState[pin];
+  b.className='bit-btn '+(njkState[pin]?'on':'off');
+  var idx=njkState.j*2+njkState.k;
+  var funcs=['保持 Hold','复位 Reset','置位 Set','翻转 Toggle'];
+  var clss=['func-hold','func-reset','func-set','func-toggle'];
+  document.getElementById('njk-func').textContent=funcs[idx];
+  document.getElementById('njk-func').className='func-badge '+clss[idx];
+}
+function njkClock(){
+  var j=njkState.j,k=njkState.k,q=njkState.q;
+  var qn,exp;
+  if(j===0&&k===0){qn=q;exp='<b>J=0, K=0：</b>保持，Q 仍为 '+q+'。'}
+  else if(j===0&&k===1){qn=0;exp='<b>J=0, K=1：</b>复位，Q→0。下降沿有效，执行复位。'}
+  else if(j===1&&k===0){qn=1;exp='<b>J=1, K=0：</b>置位，Q→1。下降沿到来，Q 被置为 1。'}
+  else{qn=1-q;exp='<b>J=1, K=1：</b>翻转，Q 从 '+q+' 变为 '+(1-q)+'。每个下降沿翻转一次，可用作二分频！'}
+  njkState.history.push({j:j,k:k,qb:q,qa:qn});
+  if(njkState.history.length>6) njkState.history.shift();
+  njkState.q=qn;
+  var qd=document.getElementById('njk-q'),qbd=document.getElementById('njk-qb');
+  qd.textContent=qn; qbd.textContent=1-qn;
+  qd.className='out-val '+(qn?'v1':'v0');
+  qbd.className='out-val '+(qn?'v0':'v1');
+  document.getElementById('njk-explain').innerHTML=exp;
+  drawWave();
+  var btn=document.getElementById('njk-clk-btn');
+  btn.classList.add('fire'); setTimeout(function(){btn.classList.remove('fire')},200);
+}
+
+var msState={j:0,k:0,qm:0,q:0};
+function msToggle(pin){
+  msState[pin]=1-msState[pin];
+  var b=document.getElementById('ms-'+pin);
+  b.textContent=msState[pin];
+  b.className='bit-btn '+(msState[pin]?'on':'off');
+  updateMsBadge();
+}
+function updateMsBadge(){
+  var idx=msState.j*2+msState.k;
+  var funcs=['保持 Hold','复位 Reset','置位 Set','翻转 Toggle'];
+  var clss=['func-hold','func-reset','func-set','func-toggle'];
+  document.getElementById('ms-func').textContent=funcs[idx];
+  document.getElementById('ms-func').className='func-badge '+clss[idx];
+}
+function msClock(){
+  var j=msState.j,k=msState.k;
+  // Rising edge: master samples J,K
+  var qm_new;
+  if(j===0&&k===0) qm_new=msState.qm;
+  else if(j===0&&k===1) qm_new=0;
+  else if(j===1&&k===0) qm_new=1;
+  else qm_new=1-msState.qm;
+  msState.qm=qm_new;
+  // Falling edge: slave copies master
+  msState.q=qm_new;
+  var qmd=document.getElementById('ms-qm'),qd=document.getElementById('ms-q'),qbd=document.getElementById('ms-qb');
+  qmd.textContent=msState.qm; qmd.className='out-val '+(msState.qm?'v1':'v0');
+  qd.textContent=msState.q; qd.className='out-val '+(msState.q?'v1':'v0');
+  qbd.textContent=1-msState.q; qbd.className='out-val '+(msState.q?'v0':'v1');
+  var jk_text=j+''+k;
+  var explain_ms={
+    '00':'<b>J=0, K=0：</b>CLK↑ Master 保持 → CLK↓ Slave 传 Qm='+msState.qm+' → Q='+msState.q+'（保持）。',
+    '01':'<b>J=0, K=1：</b>CLK↑ Master 复位 Qm→0 → CLK↓ Slave 传 Qm=0 → Q=0。',
+    '10':'<b>J=1, K=0：</b>CLK↑ Master 置位 Qm→1 → CLK↓ Slave 传 Qm=1 → Q=1。',
+    '11':'<b>J=1, K=1：</b>CLK↑ Master 翻转 Qm→'+msState.qm+' → CLK↓ Slave 传 Qm → Q='+msState.q+'（翻转）。每个脉冲仅翻转一次！'
+  };
+  document.getElementById('ms-explain').innerHTML=explain_ms[jk_text];
+  var btn=document.getElementById('ms-clk-btn');
+  btn.classList.add('fire'); setTimeout(function(){btn.classList.remove('fire')},200);
+}
+
+function drawWave(){
+  var hist=njkState.history;
+  var svg=document.getElementById('njk-wave');
+  if(!hist.length){svg.innerHTML='';return;}
+  var n=hist.length, W=580, stepW=Math.min(80,(W-60)/n);
+  var rows=[
+    {label:'CLK',y:8,h:22,col:'#888780'},
+    {label:'Q',y:42,h:22,col:'#1D9E75'},
+    {label:'Q̄',y:76,h:22,col:'#D85A30'}
+  ];
+  var html='';
+  rows.forEach(function(r){
+    html+='<text x="4" y="'+(r.y+r.h/2+1)+'" fill="var(--color-text-secondary)" font-size="11" dominant-baseline="central" font-family="var(--font-mono)">'+r.label+'</text>';
+  });
+  hist.forEach(function(ev,i){
+    var x=52+i*stepW, xf=x+stepW*0.55;
+    var cr=rows[0]; var ch=cr.h;
+    html+='<polyline fill="none" stroke="'+cr.col+'" stroke-width="1.5" stroke-linejoin="round" points="'+x+','+(cr.y+ch)+' '+x+','+cr.y+' '+xf+','+cr.y+' '+xf+','+(cr.y+ch)+' '+(x+stepW)+','+(cr.y+ch)+'"/>';
+    html+='<line x1="'+xf+'" y1="'+(rows[0].y-2)+'" x2="'+xf+'" y2="'+(rows[2].y+rows[2].h+2)+'" stroke="var(--color-border-secondary)" stroke-width="0.5" stroke-dasharray="3 2"/>';
+    [1,2].forEach(function(ri){
+      var r=rows[ri];
+      var vb=ri===1?ev.qb:(1-ev.qb);
+      var va=ri===1?ev.qa:(1-ev.qa);
+      var yb=vb?r.y:r.y+r.h, ya=va?r.y:r.y+r.h;
+      html+='<line x1="'+x+'" y1="'+yb+'" x2="'+xf+'" y2="'+yb+'" stroke="'+r.col+'" stroke-width="1.5"/>';
+      if(yb!==ya) html+='<line x1="'+xf+'" y1="'+yb+'" x2="'+xf+'" y2="'+ya+'" stroke="'+r.col+'" stroke-width="1.5"/>';
+      html+='<line x1="'+xf+'" y1="'+ya+'" x2="'+(x+stepW)+'" y2="'+ya+'" stroke="'+r.col+'" stroke-width="1.5"/>';
+      if(i>0){var pev=hist[i-1];var pv=ri===1?pev.qa:(1-pev.qa);var py=pv?r.y:r.y+r.h;if(py!==yb) html+='<line x1="'+x+'" y1="'+py+'" x2="'+x+'" y2="'+yb+'" stroke="'+r.col+'" stroke-width="1.5"/>';}
+    });
+  });
+  svg.innerHTML=html;
+}
+</script>
