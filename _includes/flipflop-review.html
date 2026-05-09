@@ -567,14 +567,14 @@ function updateMsBadge(){
 }
 function msClock(){
   var j=msState.j,k=msState.k;
-  // Rising edge: master samples J,K
+  /* Rising edge: master samples J,K */
   var qm_new;
   if(j===0&&k===0) qm_new=msState.qm;
   else if(j===0&&k===1) qm_new=0;
   else if(j===1&&k===0) qm_new=1;
   else qm_new=1-msState.qm;
   msState.qm=qm_new;
-  // Falling edge: slave copies master
+  /* Falling edge: slave copies master */
   msState.q=qm_new;
   var qmd=document.getElementById('ms-qm'),qd=document.getElementById('ms-q'),qbd=document.getElementById('ms-qb');
   qmd.textContent=msState.qm; qmd.className='out-val '+(msState.qm?'v1':'v0');
