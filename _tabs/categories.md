@@ -35,7 +35,7 @@ order: 2
     <p>Music is the shorthand of emotion</p>
   </a>
 
-  <a href="{{ '/coming-soon/' | relative_url }}" class="category-card">
+  <a href="{{ '/categories/thoughts/' | relative_url }}" class="category-card">
     <span class="category-icon">✍</span>
     <h3>Thoughts</h3>
     <p>Cogito, ergo sum</p>

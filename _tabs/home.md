@@ -5,15 +5,15 @@ order: 1
 permalink: /
 ---
 
-## Ich bin Fedor
+## Jestem Fedor
 
-*Lorenz Fedor Klemens von Memel, Né libre et singulier*. A CS undergraduate student in Tsinghua University.
+Wawrzyniec Fedor Klemens z Kłajpedy. A CS undergraduate student in Tsinghua University.
 
 ---
 
 ### 🛠️ Skills
 
-* 🇨🇳 中文 (母语), 🇬🇧 English (Fluent), 🇫🇷 Français (Intermédiaire), 🇩🇪 Deutsch (Ich lerne gerade), 🇵🇱 Polski (Uczę się)
+* 🇨🇳 中文 (母语), 🇬🇧 English (Fluent), 🇫🇷 Français (Intermédiaire), 🇵🇱 Polski (Uczę się), 🇩🇪 Deutsch (Ich lerne, wenn ich daran denke)
 * `C++`, `Python`, `Rust`. Be open to learning.
 * 🎹 Piano player
 * 🐧 Linux user
