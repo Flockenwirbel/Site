@@ -5,7 +5,7 @@ categories: [Language]
 tags: [polish, grammar]
 ---
 
-在前两课中我们学习了名词系统、动词变位和基础句型. 第三课将深入指示代词系统, 学习如何根据距离和性别选择正确的形式, 同时学习两个常用形容词 duży (大的) 与 mały (小的) 的性数变化.
+在前两课中我们学习了名词系统、动词变位和基础句型. 第三课将深入指示代词系统, 学习如何根据距离和性别选择正确的形式.
 
 ---
 
@@ -72,15 +72,15 @@ tags: [polish, grammar]
 
 **阳性名词**
 
-|        |                         |
-| :----- | :---------------------- |
-| **PL** | **Ten** pies jest duży. |
-| **FR** | **Ce** chien est grand. |
+|        |                               |
+| :----- | :---------------------------- |
+| **PL** | **Ten** pies je mięso.        |
+| **FR** | **Ce** chien mange de la viande. |
 
-|        |                            |
-| :----- | :------------------------- |
-| **PL** | **Tamten** pies jest mały. |
-| **FR** | **Ce** chien-là est petit. |
+|        |                                    |
+| :----- | :--------------------------------- |
+| **PL** | **Tamten** kot pije mleko.         |
+| **FR** | **Ce** chat-là boit du lait.       |
 
 **阴性名词**
 
@@ -108,10 +108,10 @@ tags: [polish, grammar]
 
 ### 对比练习: 近指 vs 远指
 
-|        |                                                                   |
-| :----- | :---------------------------------------------------------------- |
-| **PL** | **Ten** dom jest duży, ale **tamten** dom jest mały.              |
-| **FR** | **Cette** maison est grande, mais **cette** maison-là est petite. |
+|        |                                                                         |
+| :----- | :---------------------------------------------------------------------- |
+| **PL** | **Ten** dom jest tutaj, ale **tamten** dom jest tam.                    |
+| **FR** | **Cette** maison est ici, mais **cette** maison-là est là-bas.          |
 
 > 当句子中同时出现近指和远指时, 使用对比结构: **ten... ale tamten...** (这个...但那个...). 这种结构在描述两个事物时非常实用.
 {: .prompt-tip }
@@ -154,8 +154,8 @@ tags: [polish, grammar]
 
 |        |                             |
 | :----- | :-------------------------- |
-| **PL** | **Te** psy są duże.         |
-| **FR** | **Ces** chiens sont grands. |
+| **PL** | **Te** psy jedzą mięso.     |
+| **FR** | **Ces** chiens mangent de la viande. |
 
 |        |                                      |
 | :----- | :----------------------------------- |
@@ -171,132 +171,26 @@ tags: [polish, grammar]
 
 ---
 
-## 形容词: duży 与 mały
-
-在第二课中我们学习了形容词的基本性数规则: 阳性 **-y**, 阴性 **-a**, 中性 **-e**. 本课将用两个高频形容词 **duży** (大的) 和 **mały** (小的) 来巩固这一规则, 并扩展到复数形式.
-
-### 单数形式
-
-| 性别 | duży (大的) | 法语   | mały (小的) | 法语   |
-| :--- | :---------- | :----- | :---------- | :----- |
-| 阳性 | **duży**    | grand  | **mały**    | petit  |
-| 阴性 | **duża**    | grande | **mała**    | petite |
-| 中性 | **duże**    | grand  | **małe**    | petit  |
-
-> duży 和 mały 都严格遵循第二课学到的词尾规律: 阳性 **-y**, 阴性 **-a**, 中性 **-e**. 注意 duży 的阳性形式因为词干包含 ż (硬化辅音), 所以词尾是 **-y** 而不是 -i.
-{: .prompt-info }
-
-### 复数形式
-
-波兰语形容词复数区分**阳性人** (mężkoosobowy) 和**非阳性人** (niemężkoosobowy) 两组:
-
-| 类型     | duży (大的) | mały (小的) |
-| :------- | :---------- | :---------- |
-| 阳性人   | **duzi**    | **mali**    |
-| 非阳性人 | **duże**    | **małe**    |
-
-> 阳性人复数发生了**词干元音交替**: duży → du**z**i (ż → z), mały → ma**l**i. 这是波兰语中常见的现象, 当词尾变为 -i 时, 硬化辅音要还原为对应的普通辅音.
-{: .prompt-tip }
-
-### 用法示例
-
-**阳性单数**
-
-|        |                          |
-| :----- | :----------------------- |
-| **PL** | Ten dom jest **duży**.   |
-| **FR** | Cette maison est grande. |
-
-|        |                           |
-| :----- | :------------------------ |
-| **PL** | Tamten kot jest **mały**. |
-| **FR** | Ce chat-là est petit.     |
-
-**阴性单数**
-
-|        |                                   |
-| :----- | :-------------------------------- |
-| **PL** | Ta kobieta ma **dużą** rodzinę.   |
-| **FR** | Cette femme a une grande famille. |
-
-|        |                        |
-| :----- | :--------------------- |
-| **PL** | Ta ryba jest **mała**. |
-| **FR** | Ce poisson est petit.  |
-
-> 注意: 形容词作定语时也需要配合性别. **duża** 修饰阴性名词 rodzinę (宾格形式, 主格 rodzina), 即使名词变格了, 形容词的阴性词尾 -a 依然保留.
-{: .prompt-tip }
-
-**中性单数**
-
-|        |                           |
-| :----- | :------------------------ |
-| **PL** | To dziecko jest **małe**. |
-| **FR** | Cet enfant est petit.     |
-
-|        |                          |
-| :----- | :----------------------- |
-| **PL** | To drzewo jest **duże**. |
-| **FR** | Cet arbre est grand.     |
-
-**阳性人复数**
-
-|        |                           |
-| :----- | :------------------------ |
-| **PL** | Ci mężczyźni są **duzi**. |
-| **FR** | Ces hommes sont grands.   |
-
-|        |                          |
-| :----- | :----------------------- |
-| **PL** | Ci chłopcy są **mali**.  |
-| **FR** | Ces garçons sont petits. |
-
-**非阳性人复数**
-
-|        |                         |
-| :----- | :---------------------- |
-| **PL** | Te psy są **duże**.     |
-| **FR** | Ces chiens sont grands. |
-
-|        |                        |
-| :----- | :--------------------- |
-| **PL** | Te koty są **małe**.   |
-| **FR** | Ces chats sont petits. |
-
-### 对比练习: duży vs mały
-
-|        |                                                       |
-| :----- | :---------------------------------------------------- |
-| **PL** | Ten słoń jest **duży**, ale ta mysz jest **mała**.    |
-| **FR** | Cet éléphant est grand, mais cette souris est petite. |
-
-|        |                                                            |
-| :----- | :--------------------------------------------------------- |
-| **PL** | Ci studenci są **duzi**, a te studentki są **małe**.       |
-| **FR** | Ces étudiants sont grands, et ces étudiantes sont petites. |
-
----
-
 ## 综合练习: 场景应用
 
 ### 场景一: 在公园
 
 |        |                                                                              |
 | :----- | :--------------------------------------------------------------------------- |
-| **PL** | **To** jest **pies**. **Te** psy są duże. **Tamto** jest **drzewo**.         |
-| **FR** | **C'est** un chien. **Ces** chiens sont grands. **C'est** un arbre (là-bas). |
+| **PL** | **To** jest **pies**. **Tamto** jest **kot**. **Te** psy są tutaj.           |
+| **FR** | **C'est** un chien. **C'est** un chat (là-bas). **Ces** chiens sont ici.     |
 
-> 练习要点: 不变格指示代词 (To jest, Tamto jest) 、性数配合指示代词 (Te psy 阳性复数) 、动物词汇 (pies) 、形容词一致 (duże).
+> 练习要点: 不变格指示代词 (To jest, Tamto jest) 、性数配合指示代词 (Te psy 阳性复数) 、动物词汇 (pies, kot).
 {: .prompt-tip }
 
 ### 场景二: 在咖啡馆
 
 |        |                                                                                    |
 | :----- | :--------------------------------------------------------------------------------- |
-| **PL** | **Ta** kawa jest dobra. **Tamta** kawa jest lepsza. **To** ciasteczko jest pyszne. |
-| **FR** | **Ce** café est bon. **Ce** café-là est meilleur. **Ce** biscuit est délicieux.    |
+| **PL** | **Ta** kawa to espresso. **Tamta** herbata to zielona. **To** jest woda.            |
+| **FR** | **Ce** café est un espresso. **Ce** thé-là est vert. **C'est** de l'eau.            |
 
-> 练习要点: 近指/远指对比 (ta / tamta), 性别配合 (kawa 阴性 → ta, ciasteczko 中性 → to), 形容词位置.
+> 练习要点: 近指/远指对比 (ta / tamta), 性别配合 (kawa 阴性 → ta, herbata 阴性 → tamta), to jest 句型.
 {: .prompt-tip }
 
 ### 场景三: 描述一家人
@@ -328,27 +222,5 @@ tags: [polish, grammar]
 - 阳性人名词 (男人、男孩、学生等) → ci / tamci
 - 其余名词 (阴性、中性、动物等) → te / tamte
 
-> 初学者最容易犯的错误是在需要配合性数时使用不变格的 to. 记住: **To jest dom** (正确) vs **To dom jest duży** (错误, 应为 **Ten dom jest duży**).
+> 初学者最容易犯的错误是在需要配合性数时使用不变格的 to. 记住: **To jest dom** (正确, 意为"这是一栋房子") vs **To dom** (缺少动词, 不完整). 当 to 作为指示形容词修饰名词时, 必须配合性别: **Ten dom** jest tutaj.
 {: .prompt-warning }
-
-### 形容词性数配合规律
-
-**步骤1: 确定名词性别 (单数)**
-
-以 duży / mały 为例:
-
-| 性别 | 词尾 | duży | mały |
-| :--- | :--- | :--- | :--- |
-| 阳性 | -y   | duży | mały |
-| 阴性 | -a   | duża | mała |
-| 中性 | -e   | duże | małe |
-
-**步骤2: 确定复数类型 (复数)**
-
-| 类型     | duży | mały |
-| :------- | :--- | :--- |
-| 阳性人   | duzi | mali |
-| 非阳性人 | duże | małe |
-
-> 阳性人复数的形容词词尾为 **-i**, 此时词干可能发生辅音交替: ż → z (duży → duzi), ł → l (mały → mali). 非阳性人复数与中性单数形式相同, 均为 **-e**.
-{: .prompt-info }
