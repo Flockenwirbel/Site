@@ -7,7 +7,7 @@ permalink: /
 
 ## Jestem Fedor
 
-Wawrzyniec Fedor Klemens z Kłajpedy. A CS undergraduate student in Tsinghua University.
+Wawrzyniec Fedor Klemenski. A CS undergraduate student in Tsinghua University.
 
 ---
 
