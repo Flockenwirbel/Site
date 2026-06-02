@@ -5,18 +5,31 @@ order: 1
 permalink: /
 ---
 
-## Jestem Fedor
+## Cześć! Jestem Fedor 👋
 
-Wawrzyniec Fedor Klemenski. A CS undergraduate student in Tsinghua University.
+Wawrzyniec Fedor Klemenski · CS @ Tsinghua · *Urodzony wolny i wyjątkowy*
 
 ---
 
 ### 🛠️ Skills
 
-* 🇨🇳 中文 (母语), 🇬🇧 English (Fluent), 🇫🇷 Français (Intermédiaire), 🇵🇱 Polski (Uczę się), 🇩🇪 Deutsch (Ich lerne, wenn ich daran denke)
-* `C++`, `Python`, `Rust`. Be open to learning.
-* 🎹 Piano player
-* 🐧 Linux user
+**🗣 Languages**
+
+🇨🇳 中文 (母语), 🇬🇧 English (Fluent), 🇫🇷 Français (Intermédiaire), 🇵🇱 Polski (Uczę się), 🇩🇪 Deutsch (Ich lerne, wenn ich daran denke)
+
+**💻 Code**
+
+`Python` `C++` `Rust` `TypeScript` `JavaScript` `C`
+
+Be open to learning.
+
+**🧰 Frameworks & Tools**
+
+`Svelte` `SvelteKit` `Tailwind CSS` `PostgreSQL` `Drizzle` `Linux` `Git`
+
+### 🎹 Piano
+
+A very dumb piano player, but passionate admirer of Chopin.
 
 ---
 
@@ -24,4 +37,4 @@ Wawrzyniec Fedor Klemenski. A CS undergraduate student in Tsinghua University.
 
 * A thinker with a touch of civilizational pessimism.
 * Physics beginner — on the path from intuition to formality.
-* Passionate admirer of Chopin.
+* A proud old-guard. Exploiters of the world — collude!
