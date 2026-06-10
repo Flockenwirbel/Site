@@ -4,6 +4,36 @@ date: 2026-06-09 20:14:00 +0800
 categories: [thoughts]
 ---
 
+## 10.06.2026
+
+复习到现在内心颇不宁静. 与其在图书馆呆坐, 打开四个 Codex 会话, 同时试图复习概统、网原、数电、人智导, 还不如回到宿舍做做数电实验.
+
+昨天课上与 Maple 聊起 Agent 使用情况, 也就聊到了未来的打算. Maple 正巧这天过生日, 他在朋友圈里这样写道: 
+
+> “要么往上拓展无人之境, 要么往深钻研原理的新解.” 这些课拒绝为我们做到其中任一提供帮助.
+
+我仰慕他作为一个具有极强 competence 的开发者的身份, 可以不受 GPA 的桎梏. 说来我的命运是被锁死的, 用 otto 的话来说是癌症晚期的白银, “上不来, 下不去, 卡在这里了”. 无论我想做什么, 头上都有个红标 **3.7**, 这可能是我给自己的心锁, 不过谁知道呢. 
+
+昨天晚上又在下课的时候蹭蒙楼多功能厅的琴, 跟收场的老师聊了聊. 感觉他是注意我也有一定时间了, 毕竟每次似乎只有我在他过来收场的时候蹭琴. 他对我考不进键盘队表示挺惊讶的, 不过确实也指出我应该在大一点的琴上练习, 然后多跑跑音阶, 提高一下手指的灵活性. 这倒真是. 你清就是这样, 键盘队可以用好的琴, 有更多的练习时间, 我则很悲惨地被拒之门外, 用刺耳的立式雅马哈、KAWAI 练习, 结果就是一上招新的那一架就大脑一片空白. 荒唐. 不过我真的挺开心的, 这老师看着少说六七十岁了, 我难得和这个年纪的人聊得这么愉快.
+
+你是否感觉好些了, Fedor?
+
+> Wina, wina, wina dajcie! \\
+> A jak umrę pochowajcie? \\
+> Na zielonej Ukrainie \\
+> przy kochanej mej dziewczynie 
+>
+> Hej, hej, hej, sokoły \\
+> Omijajcie góry, lasy, doły \\
+> Dzwoń, dzwoń, dzwoń dzwoneczku \\
+> Mój stepowy skowroneczku 
+
+<figure style="text-align: center; margin: 1.5rem 0;">
+  <img src="../assets/img/posts/2026-06-09-czerwcowe-głupoty/839377cc6efc3f06062344d8c41aacf8.jpg" alt="" style="max-width: 100%;">
+  <figcaption style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">摄于西大操场旁</figcaption>
+</figure>
+
+
 ## 09.06.2026
 
 起初, 屏幕一片漆黑, 终端里空无一物. 程序员说："要有项目." 于是他敲下第一行命令. GPT 给出了最初的骨架. 程序员看这骨架是好的, 就把代码和配置分开了. 这是第一个小时. 
