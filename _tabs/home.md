@@ -7,7 +7,7 @@ permalink: /
 
 ## Cześć! Jestem Fedor 👋
 
-Wawrzyniec Fedor Klemenski · CS @ Tsinghua · *Urodzony wolny i wyjątkowy*
+Wawrzyniec Fedor Klemeński · CS @ Tsinghua · *Urodzony wolny i wyjątkowy*
 
 ---
 
