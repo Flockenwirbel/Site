@@ -119,6 +119,19 @@ tt,
   font-size: 1.13rem;
 }
 
+/* ===== Sidebar overlay on narrow screens (override Chirpy push behavior) ===== */
+@media all and (max-width: 849px) {
+  [sidebar-display] #main-wrapper {
+    transform: none !important;
+  }
+
+  #mask {
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+}
+
 /* ===== Category cards ===== */
 .category-cards {
   display: grid;

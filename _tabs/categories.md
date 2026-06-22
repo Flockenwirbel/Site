@@ -5,13 +5,13 @@ order: 2
 ---
 
 <div class="category-cards">
-  <a href="{{ '/coming-soon/' | relative_url }}" class="category-card">
+  <a href="{{ '/categories/math/' | relative_url }}" class="category-card">
     <span class="category-icon">∑</span>
     <h3>Mathematics</h3>
     <p>The queen of sciences</p>
   </a>
 
-  <a href="{{ '/physics/' | relative_url }}" class="category-card">
+  <a href="{{ '/categories/physics/' | relative_url }}" class="category-card">
     <span class="category-icon">⚛</span>
     <h3>Physics</h3>
     <p>The universe in equations</p>
@@ -23,7 +23,7 @@ order: 2
     <p>Talk is cheap, show me the code</p>
   </a>
 
-  <a href="{{ '/language/' | relative_url }}" class="category-card">
+  <a href="{{ '/categories/language/' | relative_url }}" class="category-card">
     <span class="category-icon">🌍</span>
     <h3>Language Learning</h3>
     <p>One language sets you in a corridor for life</p>
