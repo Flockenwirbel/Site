@@ -15,7 +15,7 @@ Wawrzyniec Fedor Klemeński · CS @ Tsinghua · *Urodzony wolny i wyjątkowy*
 
 **🗣 Languages**
 
-🇨🇳 中文 (母语), 🇬🇧 English (Fluent), 🇫🇷 Français (Intermédiaire), 🇵🇱 Polski (Uczę się), 🇩🇪 Deutsch (Ich lerne, wenn ich daran denke)
+🇨🇳 中文 (母语), 🇬🇧 English (Fluent), 🇫🇷 Français (Intermédiaire), 🇵🇱 Polski (Uczę się), 🇯🇵 日本語は全部アニメから学びました
 
 **💻 Code**
 
