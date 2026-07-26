@@ -1,11 +1,33 @@
 <!-- https://giscus.app/ -->
 <script>
   (function () {
-    const themeMapper = Theme.getThemeMapper(
-      '{{ '/assets/css/giscus-light.css' | absolute_url }}',
-      '{{ '/assets/css/giscus-dark.css' | absolute_url }}'
-    );
-    const initTheme = themeMapper[Theme.visualState];
+    const lightTheme = '{{ '/assets/css/giscus-light.css' | absolute_url }}';
+    const darkTheme = '{{ '/assets/css/giscus-dark.css' | absolute_url }}';
+    const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function currentTheme() {
+      const mode = document.documentElement.getAttribute('data-mode');
+      const dark = mode ? mode === 'dark' : colorScheme.matches;
+      return dark ? darkTheme : lightTheme;
+    }
+
+    function updateGiscusTheme() {
+      const frame = document.querySelector('.giscus-frame');
+      if (!frame || !frame.contentWindow) {
+        return;
+      }
+
+      frame.contentWindow.postMessage(
+        {
+          giscus: {
+            setConfig: {
+              theme: currentTheme()
+            }
+          }
+        },
+        'https://giscus.app'
+      );
+    }
 
     let lang = '{{ site.comments.giscus.lang | default: lang }}';
     {%- comment -%} https://github.com/giscus/giscus/tree/main/locales {%- endcomment -%}
@@ -23,7 +45,7 @@
       'data-strict': '{{ site.comments.giscus.strict | default: '0' }}',
       'data-reactions-enabled': '{{ site.comments.giscus.reactions_enabled | default: '1' }}',
       'data-emit-metadata': '0',
-      'data-theme': initTheme,
+      'data-theme': currentTheme(),
       'data-input-position': '{{ site.comments.giscus.input_position | default: 'bottom' }}',
       'data-lang': lang,
       'data-loading': 'lazy',
@@ -37,23 +59,24 @@
     );
 
     const footer = document.querySelector('footer');
-    footer.insertAdjacentElement('beforebegin', giscusNode);
+    if (footer) {
+      footer.insertAdjacentElement('beforebegin', giscusNode);
+    }
 
     addEventListener('message', (event) => {
-      if (event.source === window && event.data && event.data.id === Theme.ID) {
-        const newTheme = themeMapper[Theme.visualState];
-        const giscus = document.querySelector('.giscus-frame')?.contentWindow;
+      if (event.source === window && event.data && event.data.id === 'theme-mode') {
+        updateGiscusTheme();
+      }
+    });
 
-        giscus?.postMessage(
-          {
-            giscus: {
-              setConfig: {
-                theme: newTheme
-              }
-            }
-          },
-          'https://giscus.app'
-        );
+    new MutationObserver(updateGiscusTheme).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-mode']
+    });
+
+    colorScheme.addEventListener('change', () => {
+      if (!document.documentElement.hasAttribute('data-mode')) {
+        updateGiscusTheme();
       }
     });
   })();
