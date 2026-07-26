@@ -38,9 +38,19 @@ avatar: /assets/img/favicons/Katze.svg
 # TOC in posts
 toc: true
 
-# Comments (disabled for now)
+# Comments
 comments:
-  provider:
+  provider: giscus
+  giscus:
+    repo: Flockenwirbel/Site
+    repo_id: R_kgDOOZPWKA
+    category: Announcements
+    category_id: DIC_kwDOOZPWKM4DB-PA
+    mapping: pathname
+    strict: 1
+    input_position: top
+    lang: zh-CN
+    reactions_enabled: 1
 
 # PWA
 pwa:
