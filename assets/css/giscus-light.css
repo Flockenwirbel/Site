@@ -1,0 +1,103 @@
+@import url('https://giscus.app/themes/light.css');
+
+@font-face {
+  font-family: 'Source Serif 4';
+  src: url('https://taniecsniegu.net/assets/fonts/SourceSerif4-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  src: url('https://taniecsniegu.net/assets/fonts/SourceSerif4-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai';
+  src: url('https://taniecsniegu.net/assets/fonts/LXGWWenKai-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrainsMono Nerd Font Mono';
+  src: url('https://taniecsniegu.net/assets/fonts/JetBrainsMonoNFM-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+}
+
+main {
+  --color-canvas-default: #fff;
+  --color-canvas-overlay: #fff;
+  --color-canvas-inset: #f7f7f7;
+  --color-canvas-subtle: #f7f7f7;
+  --color-border-default: #d8d8d8;
+  --color-border-muted: #e8e8e8;
+  --color-fg-default: #34343c;
+  --color-fg-muted: #75757d;
+  --color-accent-fg: #0056b2;
+  --color-accent-emphasis: #006edc;
+  --color-accent-subtle: #e8f3ff;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family:
+    'Source Serif 4',
+    'LXGW WenKai',
+    'Noto Serif SC',
+    'Noto Serif',
+    serif !important;
+}
+
+body {
+  line-height: 1.65;
+}
+
+code,
+pre,
+kbd,
+samp,
+tt {
+  font-family:
+    'JetBrainsMono Nerd Font Mono',
+    'LXGW WenKai',
+    monospace !important;
+}
+
+.gsc-comment-box,
+.gsc-comment,
+.gsc-reply {
+  border-radius: 0.75rem;
+}
+
+.gsc-comment-box-textarea {
+  line-height: 1.65;
+}
+
+.BtnGroup-item:first-child,
+.btn:first-child {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.BtnGroup-item:last-child,
+.btn:last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.btn:only-child {
+  border-radius: 0.5rem;
+}
