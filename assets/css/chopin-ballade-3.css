@@ -1,0 +1,28 @@
+.content .op47-score-row {
+  margin: 1.5rem 0;
+}
+
+.content .op47-score-row > figure > a.img-link {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+.content .op47-score-row img {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}
+
+@media (max-width: 575px) {
+  .content .op47-score-row {
+    flex-wrap: wrap;
+    gap: 0.75rem !important;
+  }
+
+  .content .op47-score-row > figure {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+  }
+}
