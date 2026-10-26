@@ -2,6 +2,9 @@
 title: Lipcowe głupoty 2026
 date: 2026-07-11 00:00:00 +0800
 categories: [thoughts]
+slug: july-nonsense
+redirect_from:
+  - "/posts/Lipcowe-głupoty/"
 ---
 
 ## 12.07.2026

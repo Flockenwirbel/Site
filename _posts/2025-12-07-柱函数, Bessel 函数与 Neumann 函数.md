@@ -4,6 +4,9 @@ title: "柱函数, Bessel 函数与 Neumann 函数"
 date: 2025-12-07 11:10:00 +0800
 categories: [physics]
 tags: [数学物理方法]
+slug: bessel-and-neumann-functions
+redirect_from:
+  - "/posts/柱函数,-Bessel-函数与-Neumann-函数/"
 ---
 
 Helmholtz 方程在柱坐标系下分离变量, 可以得到

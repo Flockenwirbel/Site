@@ -4,6 +4,9 @@ title: "虚宗量 Bessel 函数, 半奇数阶 Bessel 函数与球 Bessel 函数"
 date: 2025-12-18 01:33:19 +0800
 categories: [physics]
 tags: [数学物理方法]
+slug: modified-half-integer-and-spherical-bessel-functions
+redirect_from:
+  - "/posts/虚宗量-Bessel-函数,-半奇数阶-Bessel-函数与球-Bessel-函数/"
 ---
 
 

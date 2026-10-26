@@ -4,6 +4,9 @@ title: "Laplace 变换与 Fourier 变换"
 date: 2025-12-28 12:21:00 +0800
 categories: [physics]
 tags: [数学物理方法]
+slug: laplace-and-fourier-transforms
+redirect_from:
+  - "/posts/Laplace变换与Fourier变换/"
 ---
 
 > **积分变换法**本质上是**分离变量法的一种延伸与演进**.

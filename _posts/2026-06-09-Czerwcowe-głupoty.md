@@ -3,6 +3,9 @@ math: true
 title: Czerwcowe głupoty 2026
 date: 2026-06-09 20:14:00 +0800
 categories: [thoughts]
+slug: june-nonsense
+redirect_from:
+  - "/posts/Czerwcowe-głupoty/"
 ---
 
 ## 12.06.2026

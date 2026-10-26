@@ -2,6 +2,9 @@
 title: Sierpniowe głupoty 2026
 date: 2026-08-05 19:48:00 +0800
 categories: [thoughts]
+slug: august-nonsense
+redirect_from:
+  - "/posts/Sierpniowe-głupoty/"
 ---
 
 ## 20.08.2026

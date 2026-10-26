@@ -3,6 +3,9 @@ title: Polonaise in G-flat, B.36
 date: 2026-05-04 22:53:00 +0800
 categories: [music]
 tags: [Polonaise, Chopin]
+slug: chopin-polonaise-in-g-flat-b-36
+redirect_from:
+  - "/posts/Polonaise-in-G-flat-B-36/"
 ---
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86" src="//music.163.com/outchain/player?type=2&id=1880745986&auto=0&height=66"></iframe>
